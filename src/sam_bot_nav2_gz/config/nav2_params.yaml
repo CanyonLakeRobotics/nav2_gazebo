@@ -134,7 +134,7 @@ controller_server:
       min_lookahead_dist: 0.3
       max_lookahead_dist: 0.9
       lookahead_time: 1.5
-      rotate_to_heading_angular_vel: 0.3
+      rotate_to_heading_angular_vel: 0.2
       transform_tolerance: 0.1
       use_velocity_scaled_lookahead_dist: false
       min_approach_linear_velocity: 0.05
@@ -150,7 +150,7 @@ controller_server:
       use_rotate_to_heading: true
       allow_reversing: false
       rotate_to_heading_min_angle: 0.785
-      max_angular_accel: 1.0
+      max_angular_accel: 0.5
       max_robot_pose_search_dist: 10.0
       
 controller_server_rclcpp_node:
