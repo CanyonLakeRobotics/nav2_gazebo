@@ -36,10 +36,11 @@ def generate_launch_description():
     diff_drive_loaded_message = (
         "Sucessfully loaded controller diff_drive_base_controller into state active"
     )
-    toolbox_ready_message = "Registering sensor"
+    slam_toolbox_ready_message = "Registering sensor"
     navigation_ready_message = "Creating bond timer"
 
     run_headless = LaunchConfiguration("run_headless")
+    start_slam = LaunchConfiguration("start_slam")
 
     # Including launchfiles with execute process because i didn't find another way to wait for a certain messages befor starting the next launchfile
     bringup = ExecuteProcess(
@@ -61,7 +62,9 @@ def generate_launch_description():
         shell=False,
         output="screen",
     )
-    toolbox = ExecuteProcess(
+
+    slam_toolbox = ExecuteProcess(
+        condition=IfCondition(start_slam),
         name="launch_slam_toolbox",
         cmd=[
             "ros2",
@@ -77,7 +80,7 @@ def generate_launch_description():
         shell=False,
         output="screen",
     )
-    waiting_toolbox = RegisterEventHandler(
+    waiting_slam_toolbox = RegisterEventHandler(
         OnProcessIO(
             target_action=bringup,
             on_stdout=on_matching_output(
@@ -86,10 +89,19 @@ def generate_launch_description():
                     LogInfo(
                         msg="Diff drive controller loaded. Starting SLAM Toolbox..."
                     ),
-                    toolbox,
+                    slam_toolbox,
                 ],
             ),
         )
+    )
+
+    rviz_node = Node(
+        condition=IfCondition(NotSubstitution(run_headless)),
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", LaunchConfiguration("rvizconfig")],
     )
 
     navigation = ExecuteProcess(
@@ -105,31 +117,58 @@ def generate_launch_description():
                 ]
             ),
             "use_sim_time:=True",
+            ["map:=", PathJoinSubstitution(
+                [
+                    FindPackageShare("site_config"),
+                    "config",
+                    "default_arena_map.yaml",
+                ]
+            ) ],
+            "slam:=False",
             ["params_file:=", LaunchConfiguration('params_file')]
         ],
         shell=False,
         output="screen",
     )
-    rviz_node = Node(
-        condition=IfCondition(NotSubstitution(run_headless)),
-        package="rviz2",
-        executable="rviz2",
-        name="rviz2",
+
+    localization = ExecuteProcess(
+        condition=IfCondition(NotSubstitution(start_slam)),
+        name="launch_localization",
+        cmd=[
+            "ros2",
+            "launch",
+            PathJoinSubstitution(
+                [
+                    FindPackageShare("nav2_bringup"),
+                    "launch",
+                    "localization_launch.py",
+                ]
+            ),
+            "use_sim_time:=True",
+            ["map:=", PathJoinSubstitution(
+                [
+                    FindPackageShare("site_config"),
+                    "config",
+                    "default_arena_map.yaml",
+                ]
+            ) ],
+            ["params_file:=", LaunchConfiguration('params_file')]
+        ],
+        shell=False,
         output="screen",
-        arguments=["-d", LaunchConfiguration("rvizconfig")],
     )
+
     waiting_navigation = RegisterEventHandler(
         OnProcessIO(
-            target_action=toolbox,
+            target_action=bringup,
             on_stdout=on_matching_output(
-                # diff_drive_loaded_message,
-                toolbox_ready_message,
+                diff_drive_loaded_message,
                 [
-                    LogInfo(msg="SLAM Toolbox loaded. Starting navigation..."),
+                    LogInfo(msg="Starting navigation..."),
                     # TODO Debug: Navigation fails to start if it's launched right after the slam_toolbox
                     TimerAction(
                         period=20.0,
-                        actions=[navigation],
+                        actions=[navigation, localization],
                     ),
                     rviz_node,
                 ],
@@ -169,8 +208,13 @@ def generate_launch_description():
                 default_value="False",
                 description="Start GZ in hedless mode and don't start RViz (overrides use_rviz)",
             ),
+            DeclareLaunchArgument(
+                name="start_slam",
+                default_value="False",
+                description="Start the SLAM toolbox, for mapping?",
+            ),
             bringup,
-            waiting_toolbox,
+            waiting_slam_toolbox,
             waiting_navigation,
             waiting_success,
         ]
