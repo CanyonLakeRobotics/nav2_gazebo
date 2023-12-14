@@ -40,6 +40,7 @@ def generate_launch_description():
     navigation_ready_message = "Creating bond timer"
 
     run_headless = LaunchConfiguration("run_headless")
+    start_slam = LaunchConfiguration("start_slam")
 
     # Including launchfiles with execute process because i didn't find another way to wait for a certain messages befor starting the next launchfile
     bringup = ExecuteProcess(
@@ -63,6 +64,7 @@ def generate_launch_description():
     )
 
     slam_toolbox = ExecuteProcess(
+        condition=IfCondition(start_slam),
         name="launch_slam_toolbox",
         cmd=[
             "ros2",
@@ -130,6 +132,7 @@ def generate_launch_description():
     )
 
     localization = ExecuteProcess(
+        condition=IfCondition(NotSubstitution(start_slam)),
         name="launch_localization",
         cmd=[
             "ros2",
@@ -205,9 +208,13 @@ def generate_launch_description():
                 default_value="False",
                 description="Start GZ in hedless mode and don't start RViz (overrides use_rviz)",
             ),
+            DeclareLaunchArgument(
+                name="start_slam",
+                default_value="False",
+                description="Start the SLAM toolbox, for mapping?",
+            ),
             bringup,
-            # When you already have a map to load, don't start the slam_toolbox
-            #waiting_slam_toolbox,
+            waiting_slam_toolbox,
             waiting_navigation,
             waiting_success,
         ]
