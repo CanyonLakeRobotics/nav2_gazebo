@@ -121,7 +121,7 @@ def generate_launch_description():
                 [
                     FindPackageShare("site_config"),
                     "config",
-                    "default_arena_map.yaml",
+                    "grocery_map.yaml",
                 ]
             ) ],
             "slam:=False",
@@ -149,7 +149,7 @@ def generate_launch_description():
                 [
                     FindPackageShare("site_config"),
                     "config",
-                    "default_arena_map.yaml",
+                    "grocery_map.yaml",
                 ]
             ) ],
             ["params_file:=", LaunchConfiguration('params_file')]
