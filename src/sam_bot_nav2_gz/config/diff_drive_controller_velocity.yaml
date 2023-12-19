@@ -10,8 +10,8 @@ controller_manager:
 
 diff_drive_base_controller:
   ros__parameters:
-    left_wheel_names: ["fl_wheel_to_chassis_joint"]
-    right_wheel_names: ["fr_wheel_to_chassis_joint"]
+    left_wheel_names: ["fl_wheel_to_chassis"]
+    right_wheel_names: ["fr_wheel_to_chassis"]
 
     wheel_separation: 0.4
     #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
