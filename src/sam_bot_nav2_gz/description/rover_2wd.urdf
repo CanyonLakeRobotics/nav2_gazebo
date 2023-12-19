@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="rover_zero_3_2wd"
+<robot name="rover_2wd"
   xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Define robot constants -->
@@ -102,8 +102,8 @@
     </joint>
   </xacro:macro>
 
-  <xacro:wheel prefix="drivewhl_l" x_reflect="-1" y_reflect="1" />
-  <xacro:wheel prefix="drivewhl_r" x_reflect="-1" y_reflect="-1" />
+  <xacro:wheel prefix="fl_wheel_to_chassis" x_reflect="-1" y_reflect="1" />
+  <xacro:wheel prefix="fr_wheel_to_chassis" x_reflect="-1" y_reflect="-1" />
 
   <link name="front_caster">
     <visual>
@@ -224,7 +224,7 @@
     <hardware>
       <plugin>ign_ros2_control/IgnitionSystem</plugin>
     </hardware>
-    <joint name="drivewhl_l_joint">
+    <joint name="fl_wheel_to_chassis_joint">
       <command_interface name="velocity">
         <param name="min">-1</param>
         <param name="max">1</param>
@@ -232,7 +232,7 @@
       <state_interface name="position"/>
       <state_interface name="velocity"/>
     </joint>
-    <joint name="drivewhl_r_joint">
+    <joint name="fr_wheel_to_chassis_joint">
       <command_interface name="velocity">
         <param name="min">-1</param>
         <param name="max">1</param>
