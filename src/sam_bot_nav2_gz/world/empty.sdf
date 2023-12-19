@@ -152,5 +152,12 @@
       <pose>3.32581 18.819 0 0 0 -1.52783</pose>
     </include>
 
+    <include>
+      <uri>
+      https://fuel.gazebosim.org/1.0/OpenRobotics/models/Cart: rigid suspension
+      </uri>
+      <pose> 6.58 13.87 0.00 0 0 0 </pose>
+    </include>
+
   </world>
 </sdf>
