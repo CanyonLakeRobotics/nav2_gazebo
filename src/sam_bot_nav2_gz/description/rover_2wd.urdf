@@ -48,6 +48,16 @@
 
     <!-- Robot Definition -->
     <link name="base_link" />
+
+    <!-- Robot Footprint -->
+    <link name="base_footprint"/>
+
+    <joint name="base_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="base_footprint"/>
+      <origin xyz="0.0 0.0 -0.15" rpy="0 0 0"/>
+    </joint>
+
     <link name="chassis_link">
         <visual name="body_vis">
             <origin xyz="0 0 0" rpy="1.57 -0 1.57" />
@@ -68,17 +78,6 @@
             <inertia ixx="0.028064" ixy="0.0"  ixz="0.0" iyy="0.08226" iyz="0.0" izz="0.10258" />
         </inertial>
     </link>
-
-    <!-- Robot Footprint -->
-    <link name="base_footprint">
-      <xacro:box_inertia m="0" w="0" d="0" h="0"/>
-    </link>
-
-    <joint name="base_joint" type="fixed">
-      <parent link="base_link"/>
-      <child link="base_footprint"/>
-      <origin xyz="0.0 0.0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0"/>
-    </joint>
 
     <joint name="base_to_chassis" type="fixed">
         <parent link="base_link"/>
@@ -259,6 +258,7 @@
         <origin xyz="-0.031 0 -0.027" rpy="0 0 0"/>
     </joint>
 
+  <!-- IMU -->
   <link name="imu_link">
     <visual>
       <geometry>
@@ -274,7 +274,6 @@
 
     <xacro:box_inertia m="0.001" w="0.1" d="0.1" h="0.1"/>
   </link>
-
   <gazebo reference="imu_link">
     <sensor name="imu_sensor" type="imu">
       <ignition_frame_id>imu_link</ignition_frame_id>
@@ -341,13 +340,11 @@
       </imu>
     </sensor>
   </gazebo>
-
   <joint name="imu_joint" type="fixed">
     <parent link="base_link"/>
     <child link="imu_link"/>
     <origin xyz="0 0 0.01"/>
   </joint>
-
 
   <!-- Control -->
   <ros2_control name="IgnitionSystem" type="system">
@@ -377,7 +374,7 @@
     </plugin>
   </gazebo>
 
-
+  <!-- Lidar -->
   <link name="lidar_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -406,7 +403,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.12" rpy="0 0 0"/>
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>
   </joint>
 
   <gazebo reference="lidar_link">
