@@ -26,7 +26,7 @@ def generate_launch_description():
         package="sam_bot_nav2_gz"
     ).find("sam_bot_nav2_gz")
     default_model_path = os.path.join(
-        pkg_share, "src/description/sam_bot_description.urdf"
+        pkg_share, "description/rover_2wd.urdf"
     )
     default_rviz_config_path = os.path.join(pkg_share, "rviz/urdf_config.rviz")
     world_path = os.path.join(pkg_share, "world/empty.sdf")
