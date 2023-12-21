@@ -2,7 +2,7 @@
 <?xml version="1.0" ?>
 
 <sdf version="1.8">
-  <world name="collision_test">
+  <world name="grocery">
     <physics name='1ms' type='ignored'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
@@ -159,5 +159,24 @@
       <pose> 6.58 13.87 0.00 0 0 0 </pose>
     </include>
 
+    <!-- Cart Corrals -->
+    <model name='cart_corral_0'>
+      <pose>-18 -12 0 0 0 1.57099</pose>
+      <include merge="true">
+        <uri>model://cart_corral</uri>
+      </include>
+    </model>
+    <model name='cart_corral_1'>
+      <pose>-19.3 -12 0 0 0 1.571</pose>
+      <include merge="true">
+        <uri>model://cart_corral</uri>
+      </include>
+    </model>
+    <model name='cart_corral_2'>
+      <pose>-17 9.5 0 0 0 0</pose>
+      <include merge="true">
+        <uri>model://cart_corral</uri>
+      </include>
+    </model>
   </world>
 </sdf>

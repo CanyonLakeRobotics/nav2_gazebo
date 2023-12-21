@@ -29,7 +29,7 @@ def generate_launch_description():
         pkg_share, "description/rover_2wd.urdf"
     )
     default_rviz_config_path = os.path.join(pkg_share, "rviz/urdf_config.rviz")
-    world_path = os.path.join(pkg_share, "world/empty.sdf")
+    world_path = os.path.join(pkg_share, "world/grocery.sdf")
     gz_models_path = os.path.join(pkg_share, "models")
 
     use_sim_time = LaunchConfiguration("use_sim_time")
