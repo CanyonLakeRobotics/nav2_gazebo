@@ -93,6 +93,7 @@
     https://fuel.gazebosim.org/1.0/OpenRobotics/models/Grocery store
     </uri>
     <pose>0 -15.1489 0 0 -0 0</pose>
+    <static>true</static>
     </include>
 
 
@@ -100,23 +101,25 @@
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_0</name>
       <pose>23.4458 5.33395 0 0 -0 0</pose>
+      <static>true</static>
     </include>
-
-
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_1</name>
       <pose>-22.4473 3.78733 0 0 -0 0</pose>
+      <static>true</static>
     </include>
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_2</name>
       <pose>-17.3296 19.7962 0 0 -0 0</pose>
+      <static>true</static>
     </include>
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_3</name>
       <pose>19.0906 31.0127 0 0 -0 0</pose>
+      <static>true</static>
     </include>
 
 
@@ -162,18 +165,21 @@
     <!-- Cart Corrals -->
     <model name='cart_corral_0'>
       <pose>-18 -12 0 0 0 1.57099</pose>
+      <static>true</static>
       <include merge="true">
         <uri>model://cart_corral</uri>
       </include>
     </model>
     <model name='cart_corral_1'>
       <pose>-19.3 -12 0 0 0 1.571</pose>
+      <static>true</static>
       <include merge="true">
         <uri>model://cart_corral</uri>
       </include>
     </model>
     <model name='cart_corral_2'>
       <pose>-17 9.5 0 0 0 0</pose>
+      <static>true</static>
       <include merge="true">
         <uri>model://cart_corral</uri>
       </include>
