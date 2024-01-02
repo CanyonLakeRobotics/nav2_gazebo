@@ -158,12 +158,12 @@
 
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/ParkingTrolleyMin</uri>
-      <name>cart_1</name>
+      <name>cart_0</name>
       <pose>-16.0109 9.5384 -0.000112 -0 -0 -3.12651</pose>
     </include>
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/ParkingTrolleyMin</uri>
-      <name>cart_2</name>
+      <name>cart_1</name>
       <pose>-14.8673 9.45434 -0.000112 0 -0 -3.11482</pose>
     </include>
 
