@@ -228,7 +228,7 @@ def generate_launch_description():
             ),
             DeclareLaunchArgument(
                 "gz_verbosity",
-                default_value="3",
+                default_value="4",
                 description="Verbosity level for Ignition Gazebo (0~4).",
             ),
             DeclareLaunchArgument(
