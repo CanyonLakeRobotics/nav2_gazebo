@@ -34,19 +34,19 @@ source install/setup.bash
 ## Run examples
 ```
 # Launch Gazebo, RViz, and Navigation2
-ros2 launch sam_bot_nav2_gz complete_navigation.launch.py
+ros2 launch nav2_gazebo complete_navigation.launch.py
 
 # Set goal poses in RViz or run a navigation example:
-ros2 run sam_bot_nav2_gz follow_waypoints.py
-ros2 run sam_bot_nav2_gz reach_goal.py
+ros2 run nav2_gazebo follow_waypoints.py
+ros2 run nav2_gazebo reach_goal.py
 ```
 
 ## Run tests with **launch_testing**
 ```
 # Start one of the tests with
-launch_test src/sam_bot_nav2_gz/test/test_bringup.launch.py
-launch_test src/sam_bot_nav2_gz/test/test_reach_goal.launch.py
-launch_test src/sam_bot_nav2_gz/test/test_follow_waypoints.launch.py
+launch_test src/nav2_gazebo/test/test_bringup.launch.py
+launch_test src/nav2_gazebo/test/test_reach_goal.launch.py
+launch_test src/nav2_gazebo/test/test_follow_waypoints.launch.py
 ```
 
 

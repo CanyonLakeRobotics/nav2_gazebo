@@ -23,8 +23,8 @@ import os
 
 def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(
-        package="sam_bot_nav2_gz"
-    ).find("sam_bot_nav2_gz")
+        package="nav2_gazebo"
+    ).find("nav2_gazebo")
     default_model_path = os.path.join(
         pkg_share, "description/rover_2wd.urdf"
     )

@@ -19,7 +19,7 @@ def generate_test_description():
         PythonLaunchDescriptionSource(
             [
                 os.path.join(
-                    get_package_share_directory("sam_bot_nav2_gz"),
+                    get_package_share_directory("nav2_gazebo"),
                     "launch",
                     "complete_navigation.launch.py"
                 ),
@@ -29,7 +29,7 @@ def generate_test_description():
     )
 
     reach_goal = Node(
-        package="sam_bot_nav2_gz",
+        package="nav2_gazebo",
         executable="reach_goal.py",
         output="screen",
     )

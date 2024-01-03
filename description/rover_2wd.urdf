@@ -42,9 +42,9 @@
     <!-- Comment or Uncomment any of these to add them to the dev payload -->
     <!-- You can always link them elsewhere if you wish by editing accessories/<sensor>.urdf -->
     <xacro:property name="payload_z_offset" value="0.096"/>
-    <xacro:include filename="$(find sam_bot_nav2_gz)/description/rover_dev_payload.urdf"/>
-    <!-- xacro:include filename="$(find sam_bot_nav2_gz)/description/lidar.urdf"/ -->
-    <xacro:include filename="$(find sam_bot_nav2_gz)/description/imu.urdf"/>
+    <xacro:include filename="$(find nav2_gazebo)/description/rover_dev_payload.urdf"/>
+    <!-- xacro:include filename="$(find nav2_gazebo)/description/lidar.urdf"/ -->
+    <xacro:include filename="$(find nav2_gazebo)/description/imu.urdf"/>
 
     <!-- Robot Definition -->
     <link name="base_link" />
@@ -62,13 +62,13 @@
         <visual name="body_vis">
             <origin xyz="0 0 0" rpy="1.57 -0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/rover_2wd_core.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/rover_2wd_core.dae"/>
             </geometry>
         </visual>
         <collision name="body_col">
             <origin xyz="0 0 0" rpy="1.57 -0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/rover_2wd_core.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/rover_2wd_core.dae"/>
             </geometry>
         </collision>
 
@@ -89,14 +89,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="-1.57 0 0" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/pro_tire.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/pro_tire.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="-1.57 0 0" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/pro_tire.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/pro_tire.dae"/>
             </geometry>
         </collision>
 
@@ -118,14 +118,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.57 0 0" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/pro_tire.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/pro_tire.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="1.57 0 0" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/pro_tire.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/pro_tire.dae"/>
             </geometry>
         </collision>
 
@@ -147,14 +147,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor_housing.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor_housing.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor_housing.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor_housing.dae"/>
             </geometry>
         </collision>
 
@@ -175,14 +175,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor.dae"/>
             </geometry>
         </collision>
 
@@ -205,14 +205,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor_housing.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor_housing.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor_housing.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor_housing.dae"/>
             </geometry>
         </collision>
 
@@ -233,14 +233,14 @@
         <visual>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="1.57 0 1.57" />
             <geometry>
-                <mesh filename="file://$(find sam_bot_nav2_gz)/models/rover/castor.dae"/>
+                <mesh filename="file://$(find nav2_gazebo)/models/rover/castor.dae"/>
             </geometry>
         </collision>
 
@@ -372,7 +372,7 @@
   </ros2_control>
   <gazebo>
     <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-      <parameters>$(find sam_bot_nav2_gz)/config/diff_drive_controller_velocity.yaml</parameters>
+      <parameters>$(find nav2_gazebo)/config/diff_drive_controller_velocity.yaml</parameters>
     </plugin>
   </gazebo>
 

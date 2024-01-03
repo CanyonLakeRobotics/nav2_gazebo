@@ -5,7 +5,6 @@ from launch_testing.actions import ReadyToTest
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
 import launch_testing.actions
 import launch_testing.markers
 import pytest
@@ -19,7 +18,7 @@ def generate_test_description():
         PythonLaunchDescriptionSource(
             [
                 os.path.join(
-                    get_package_share_directory("sam_bot_nav2_gz"),
+                    get_package_share_directory("nav2_gazebo"),
                     "launch",
                     "complete_navigation.launch.py"
                 ),
@@ -28,16 +27,9 @@ def generate_test_description():
         launch_arguments=[("run_headless", "True")],
     )
 
-    reach_goal = Node(
-        package="sam_bot_nav2_gz",
-        executable="follow_waypoints.py",
-        output="screen",
-    )
-
     return LaunchDescription(
         [
             launch_navigation_stack,
-            reach_goal,
             ReadyToTest(),
         ]
     )
@@ -47,8 +39,8 @@ def generate_test_description():
 # These run alongside the processes specified in generate_test_description()
 class TestHelloWorldProcess(unittest.TestCase):
     def test_read_stdout(self, proc_output):
-        """Check the logs to see if the navigation task is completed"""
+        """Check if the stdout indicates that everything started correctly."""
         # 'proc_output' is an object added automatically by the launch_testing framework.
         # It captures the outputs of the processes launched in generate_test_description()
         # Refer to the documentation for further details.
-        proc_output.assertWaitFor("Goal succeeded!", timeout=800, stream="stdout")
+        proc_output.assertWaitFor("Creating bond timer", timeout=300, stream="stdout")
