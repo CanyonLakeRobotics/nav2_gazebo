@@ -104,6 +104,24 @@
       <static>true</static>
     </include>
 
+    <!-- Stop signs -->
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/chapulina/models/Stop sign with spaces
+      </uri>
+      <name>stop_sign_0</name>
+      <pose>0 2 0 0 0 1.715</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/chapulina/models/Stop sign with spaces
+      </uri>
+      <name>stop_sign_1</name>
+      <pose>0 -3 0 0 0 -1.715</pose>
+      <static>true</static>
+    </include>
+
     <!-- Trees -->
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
