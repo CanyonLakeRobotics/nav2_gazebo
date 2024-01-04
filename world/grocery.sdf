@@ -88,73 +88,77 @@
       </link>
     </model>
 
+    <!-- Buildings -->
     <include>
-    <uri>
-    https://fuel.gazebosim.org/1.0/OpenRobotics/models/Grocery store
-    </uri>
-    <pose>0 -15.1489 0 0 -0 0</pose>
-    <static>true</static>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Grocery store
+      </uri>
+      <pose>0 -15.1489 0 0 0 0</pose>
+      <static>true</static>
+    </include>
+    <include>
+      <uri>
+        https://fuel.gazebosim.org/1.0/OpenRobotics/models/Thrift shop
+      </uri>
+      <pose>-25 -5 0 0 0 3.14159</pose>
+      <static>true</static>
     </include>
 
-
+    <!-- Trees -->
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_0</name>
-      <pose>23.4458 5.33395 0 0 -0 0</pose>
+      <pose>23.4458 5.33395 0 0 0 0</pose>
       <static>true</static>
     </include>
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_1</name>
-      <pose>-22.4473 3.78733 0 0 -0 0</pose>
+      <pose>-22.4473 3.78733 0 0 0 0</pose>
       <static>true</static>
     </include>
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_2</name>
-      <pose>-17.3296 19.7962 0 0 -0 0</pose>
+      <pose>-17.3296 19.7962 0 0 0 0</pose>
       <static>true</static>
     </include>
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Oak tree</uri>
       <name>oak_tree_3</name>
-      <pose>19.0906 31.0127 0 0 -0 0</pose>
+      <pose>19.0906 31.0127 0 0 0 0</pose>
       <static>true</static>
     </include>
 
 
-    
+    <!-- Vehicles -->
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pickup</uri>
       <name>pickup_0</name>
       <pose>-14.4539 6.87968 0 0 -0 0.023171</pose>
     </include>
-
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Pickup</uri>
       <name>pickup_1</name>
       <pose>11.5947 18.421 0 0 0 -1.56092</pose>
     </include>
-
-
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Hatchback red</uri>
       <name>hatchback_red</name>
       <pose>-14.5067 3.92607 0 0 -0 0</pose>
     </include>
-
     <include>
       <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Hatchback red</uri>
       <name>hatchback_red_1</name>
       <pose>-9.97198 18.349 0 0 0 -1.57337</pose>
     </include>
-
     <include>
       <uri>https://fuel.gazebosim.org/1.0/luffyzik/models/SUV</uri>
       <name>suv</name>
       <pose>3.32581 18.819 0 0 0 -1.52783</pose>
     </include>
 
+    <!-- Carts -->
     <include>
       <uri>
       https://fuel.gazebosim.org/1.0/OpenRobotics/models/Cart: rigid suspension
