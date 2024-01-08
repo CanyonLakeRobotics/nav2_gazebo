@@ -103,7 +103,7 @@ def generate_launch_description():
         output="screen",
         arguments=[
             "-name",
-            "sam_bot",
+            "cart_bot",
             "-topic",
             "robot_description",
             "-z",
