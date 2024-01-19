@@ -377,6 +377,7 @@
   </gazebo>
 
 
+  <!-- Cart latching -->
   <gazebo>
     <plugin
       filename="libFakeLatchPlugin.so"

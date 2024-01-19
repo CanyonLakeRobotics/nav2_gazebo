@@ -32,11 +32,11 @@ find_package(ignition-msgs8 REQUIRED)
 find_package(ignition-plugin1 REQUIRED COMPONENTS loader register)
 set(IGN_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
 
-
-# Add fake latch plugin lib
 include_directories(
   include
 )
+
+# Add fake latch plugin lib
 add_library(FakeLatchPlugin SHARED src/fake_latch_plugin.cpp)
 target_link_libraries(FakeLatchPlugin PUBLIC 
                       ignition-gazebo${IGN_GAZEBO_VER}::ignition-gazebo${IGN_GAZEBO_VER}
