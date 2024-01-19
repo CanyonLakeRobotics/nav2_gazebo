@@ -376,6 +376,15 @@
     </plugin>
   </gazebo>
 
+
+  <!-- Cart latching -->
+  <gazebo>
+    <plugin
+      filename="libFakeLatchPlugin.so"
+      name="nav2_gazebo::FakeLatchPlugin">
+    </plugin>
+  </gazebo>
+
   <!-- Lidar -->
   <link name="lidar_link">
     <inertial>

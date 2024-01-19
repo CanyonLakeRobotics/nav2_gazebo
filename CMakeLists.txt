@@ -22,7 +22,32 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
-# find_package(<dependency> REQUIRED)
+
+# Ignition
+find_package(ignition-gazebo6 REQUIRED)
+set(IGN_GAZEBO_VER ${ignition-gazebo6_VERSION_MAJOR})
+find_package(ignition-transport11 REQUIRED)
+set(IGN_TRANSPORT_VER ${ignition-transport11_VERSION_MAJOR})
+find_package(ignition-msgs8 REQUIRED)
+find_package(ignition-plugin1 REQUIRED COMPONENTS loader register)
+set(IGN_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
+
+include_directories(
+  include
+)
+
+# Add fake latch plugin lib
+add_library(FakeLatchPlugin SHARED src/fake_latch_plugin.cpp)
+target_link_libraries(FakeLatchPlugin PUBLIC 
+                      ignition-gazebo${IGN_GAZEBO_VER}::ignition-gazebo${IGN_GAZEBO_VER}
+                      ignition-plugin${IGN_PLUGIN_VER}::ignition-plugin${IGN_PLUGIN_VER}
+                      ignition-transport${IGN_TRANSPORT_VER}::ignition-transport${IGN_TRANSPORT_VER}
+)
+install(
+  TARGETS FakeLatchPlugin
+  DESTINATION lib/nav2_gazebo)
+ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/hooks/${PROJECT_NAME}.dsv.in")
+
 
 install(
   DIRECTORY description scripts launch rviz config world models
