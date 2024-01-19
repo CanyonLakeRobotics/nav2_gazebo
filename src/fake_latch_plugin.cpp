@@ -16,7 +16,7 @@ namespace nav2_gazebo
     , cart_{ignition::gazebo::kNullEntity}
     , latch_joint_{ignition::gazebo::kNullEntity}
     {
-        ignwarn << "Initializing FakeLatch plugin" << std::endl;
+        
     }
 
     void FakeLatchPlugin::Configure(const ignition::gazebo::Entity &entity,
