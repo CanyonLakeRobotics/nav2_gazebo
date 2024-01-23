@@ -85,6 +85,27 @@
         <origin xyz="0 0 0.125"/>
     </joint>
 
+    <!-- latch lever -->
+    <link name="latch_lever">
+      <visual>
+        <geometry>
+          <cylinder length="0.6" radius="0.02"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder length="0.6" radius="0.02"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="base_to_latch_lever" type="fixed">
+      <parent link="base_link"/>
+      <child link="latch_lever"/>
+      <origin xyz="0.5 0 0.3" rpy="0 1.57123 0"/>
+    </joint>
+
+
     <link name="fr_wheel_link">
         <visual>
             <origin xyz="0 0 0" rpy="-1.57 0 0" />
@@ -324,7 +345,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    <origin xyz="0 0 0.4" rpy="0 0 0"/>
   </joint>
 
   <gazebo reference="lidar_link">
