@@ -85,27 +85,6 @@
         <origin xyz="0 0 0.125"/>
     </joint>
 
-    <!-- latch lever -->
-    <link name="latch_lever">
-      <visual>
-        <geometry>
-          <cylinder length="0.6" radius="0.02"/>
-        </geometry>
-      </visual>
-      <collision>
-        <geometry>
-          <cylinder length="0.6" radius="0.02"/>
-        </geometry>
-      </collision>
-    </link>
-
-    <joint name="base_to_latch_lever" type="fixed">
-      <parent link="base_link"/>
-      <child link="latch_lever"/>
-      <origin xyz="0.5 0 0.3" rpy="0 1.57123 0"/>
-    </joint>
-
-
     <link name="fr_wheel_link">
         <visual>
             <origin xyz="0 0 0" rpy="-1.57 0 0" />
@@ -315,6 +294,51 @@
       name="nav2_gazebo::FakeLatchPlugin">
     </plugin>
   </gazebo>
+
+  <!-- latch lever -->
+  <gazebo>
+    <plugin
+      filename="libignition-gazebo-contact-system.so"
+      name="ignition::gazebo::systems::Contact"> 
+    </plugin>
+  </gazebo>
+  <gazebo reference="latch_lever">
+    <sensor name="sensor_contact" type="contact">
+      <contact>
+        <collision>latch_lever_collision</collision>
+        <topic>latch_lever/contact</topic>
+      </contact>
+    </sensor>
+  </gazebo>
+  <gazebo>
+    <plugin 
+      filename="libignition-gazebo-touchplugin-system.so"
+      name="ignition::gazebo::systems::TouchPlugin">
+        <target>hatchback_red</target>
+        <namespace>latch_lever</namespace>
+        <time>0.001</time>
+        <enabled>true</enabled>
+    </plugin>
+  </gazebo>
+
+  <link name="latch_lever">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision name="latch_lever_collision">
+      <geometry>
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_to_latch_lever" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="latch_lever"/>
+    <origin xyz="0.5 0 0.3" rpy="0 1.57123 0"/>
+  </joint>
 
   <!-- Lidar -->
   <link name="lidar_link">
