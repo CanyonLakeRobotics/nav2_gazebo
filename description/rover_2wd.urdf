@@ -305,7 +305,7 @@
   <gazebo reference="latch_lever">
     <sensor name="sensor_contact" type="contact">
       <contact>
-        <collision>latch_lever_collision</collision>
+        <collision>base_link_fixed_joint_lump__latch_lever_collision_collision_1</collision>
         <topic>latch_lever/contact</topic>
       </contact>
     </sensor>
@@ -314,7 +314,7 @@
     <plugin 
       filename="libignition-gazebo-touchplugin-system.so"
       name="ignition::gazebo::systems::TouchPlugin">
-        <target>hatchback_red</target>
+        <target>hatchback_</target>
         <namespace>latch_lever</namespace>
         <time>0.001</time>
         <enabled>true</enabled>
