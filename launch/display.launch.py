@@ -130,6 +130,7 @@ def generate_launch_description():
             "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
             "/fake_latch/latch@std_msgs/msg/String]ignition.msgs.StringMsg",
             "/fake_latch/unlatch@std_msgs/msg/String]ignition.msgs.StringMsg",
+            "/latch_lever/contact@ros_gz_interfaces/msg/Contacts[gz.msgs.Contacts"
 
         ],
         output="screen",
