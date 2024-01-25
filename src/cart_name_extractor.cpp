@@ -14,7 +14,7 @@ namespace nav2_gazebo
         contact_topic_name_,
         10,
         [&](const ros_gz_interfaces::msg::Contacts::SharedPtr msg){ 
-            return contactCallback(const ros_gz_interfaces::msg::Contacts::SharedPtr msg);}
+            return contactCallback(msg);}
     )
 
 
