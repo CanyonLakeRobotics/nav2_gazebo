@@ -17,7 +17,7 @@ namespace nav2_gazebo
 
     private:
 
-        void PublishCartName();
+        void publishCartName();
 
         void contactCallback(const ros_gz_interfaces::msg::Contacts::SharedPtr msg);
     
@@ -25,5 +25,7 @@ namespace nav2_gazebo
         std::atomic<std::string> cart_name_;
         std::string contact_topic_name_;
         rclcpp::Subscription<ros_gz_interfaces::msg::Contacts>::SharedPtr contact_subscriber_;
+        
+        rclcpp::Publisher<std_msgs::msg::String>::SharedPtr cart_name_publisher_;
   };
 }
