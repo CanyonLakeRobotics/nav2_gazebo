@@ -6,7 +6,7 @@ namespace nav2_gazebo
 {
 
 CartContactDetector::CartContactDetector()
-  : Node("cart_contact_detector"), in_contact_{ false }, cart_name_{}, contact_topic_name_{ "/latch_lever/contact" }
+  : Node("cart_contact_detector"), in_contact_{ false }, contact_topic_name_{ "/latch_lever/contact" }
 {
   contact_subscriber_ = this->create_subscription<ros_gz_interfaces::msg::Contacts>(
       contact_topic_name_, 10,
@@ -17,21 +17,12 @@ CartContactDetector::CartContactDetector()
 
 void CartContactDetector::contactCallback(const ros_gz_interfaces::msg::Contacts::SharedPtr msg)
 {
-  auto contact = msg->contacts[0];                                         // ros_gz_interfaces/msgs/Contacts
-  auto other_entity = contact.collision2;                                  // ros_gz_interfaces/msgs/Entity
-  cart_name_ = other_entity.name.substr(0, other_entity.name.find("::"));  // string
-
-  publishCartName();
-}
-
-void CartContactDetector::publishCartName()
-{
+  auto contact = msg->contacts[0];         // ros_gz_interfaces/msgs/Contacts
+  auto other_entity = contact.collision2;  // ros_gz_interfaces/msgs/Entity
   auto cart_name_msg = std_msgs::msg::String();
-  cart_name_msg.data = cart_name_;
+  cart_name_msg.data = other_entity.name.substr(0, other_entity.name.find("::"));
   RCLCPP_INFO_STREAM(this->get_logger(), "Cart name: " << cart_name_msg.data);
   cart_name_publisher_->publish(cart_name_msg);
-
-  cart_name_ = "";
 }
 
 }  // namespace nav2_gazebo
