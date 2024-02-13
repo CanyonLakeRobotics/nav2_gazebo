@@ -1,6 +1,6 @@
 /**
  * Listens to the contacts topics and extracts the cart name to be published
- * 
+ *
  * **/
 #pragma once
 
@@ -9,23 +9,21 @@
 
 namespace nav2_gazebo
 {
-  class CartContactDetector : public rclcpp::Node
-  {
-    public:
+class CartContactDetector : public rclcpp::Node
+{
+public:
+  CartContactDetector();
 
-        CartContactDetector();
+private:
+  void publishCartName();
 
-    private:
+  void contactCallback(const ros_gz_interfaces::msg::Contacts::SharedPtr msg);
 
-        void publishCartName();
+  std::atomic<bool> in_contact_;
+  std::string cart_name_;
+  std::string contact_topic_name_;
+  rclcpp::Subscription<ros_gz_interfaces::msg::Contacts>::SharedPtr contact_subscriber_;
 
-        void contactCallback(const ros_gz_interfaces::msg::Contacts::SharedPtr msg);
-    
-        std::atomic<bool> in_contact_;
-        std::string cart_name_;
-        std::string contact_topic_name_;
-        rclcpp::Subscription<ros_gz_interfaces::msg::Contacts>::SharedPtr contact_subscriber_;
-        
-        rclcpp::Publisher<std_msgs::msg::String>::SharedPtr cart_name_publisher_;
-  };
-}
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr cart_name_publisher_;
+};
+}  // namespace nav2_gazebo

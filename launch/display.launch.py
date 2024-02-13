@@ -22,12 +22,10 @@ import os
 
 
 def generate_launch_description():
-    pkg_share = launch_ros.substitutions.FindPackageShare(
-        package="nav2_gazebo"
-    ).find("nav2_gazebo")
-    default_model_path = os.path.join(
-        pkg_share, "description/rover_2wd.urdf"
+    pkg_share = launch_ros.substitutions.FindPackageShare(package="nav2_gazebo").find(
+        "nav2_gazebo"
     )
+    default_model_path = os.path.join(pkg_share, "description/rover_2wd.urdf")
     default_rviz_config_path = os.path.join(pkg_share, "rviz/urdf_config.rviz")
     world_path = os.path.join(pkg_share, "world/grocery.sdf")
     gz_models_path = os.path.join(pkg_share, "models")
@@ -56,7 +54,7 @@ def generate_launch_description():
         arguments=["-d", LaunchConfiguration("rvizconfig")],
     )
 
-    # Localize using odometry and IMU data. 
+    # Localize using odometry and IMU data.
     # It can be turned off because the navigation stack uses AMCL with lidar data for localization
     robot_localization_node = Node(
         condition=launch.conditions.IfCondition(use_localization),
@@ -74,27 +72,53 @@ def generate_launch_description():
     #   see: https://github.com/ros2/launch/issues/545
     # This code is form taken ros_gz_sim and modified to work with shell=False
     #   see: https://github.com/gazebosim/ros_gz/blob/ros2/ros_gz_sim/launch/gz_sim.launch.py.in
-    gz_env = {'GZ_SIM_SYSTEM_PLUGIN_PATH':
-           ':'.join([os.environ.get('GZ_SIM_SYSTEM_PLUGIN_PATH', default=''),
-                     os.environ.get('LD_LIBRARY_PATH', default='')]),
-           'IGN_GAZEBO_SYSTEM_PLUGIN_PATH':  # TODO(CH3): To support pre-garden. Deprecated.
-                      ':'.join([os.environ.get('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', default=''),
-                                os.environ.get('LD_LIBRARY_PATH', default='')])}
+    gz_env = {
+        "GZ_SIM_SYSTEM_PLUGIN_PATH": ":".join(
+            [
+                os.environ.get("GZ_SIM_SYSTEM_PLUGIN_PATH", default=""),
+                os.environ.get("LD_LIBRARY_PATH", default=""),
+            ]
+        ),
+        "IGN_GAZEBO_SYSTEM_PLUGIN_PATH": ":".join(  # TODO(CH3): To support pre-garden. Deprecated.
+            [
+                os.environ.get("IGN_GAZEBO_SYSTEM_PLUGIN_PATH", default=""),
+                os.environ.get("LD_LIBRARY_PATH", default=""),
+            ]
+        ),
+    }
     gazebo = [
         ExecuteProcess(
             condition=launch.conditions.IfCondition(run_headless),
-            cmd=['ruby', FindExecutable(name="ign"), 'gazebo',  '-r', '-v', gz_verbosity, '-s', '--headless-rendering', world_path],
-            output='screen',
-            additional_env=gz_env, # type: ignore
+            cmd=[
+                "ruby",
+                FindExecutable(name="ign"),
+                "gazebo",
+                "-r",
+                "-v",
+                gz_verbosity,
+                "-s",
+                "--headless-rendering",
+                world_path,
+            ],
+            output="screen",
+            additional_env=gz_env,  # type: ignore
             shell=False,
         ),
         ExecuteProcess(
             condition=launch.conditions.UnlessCondition(run_headless),
-            cmd=['ruby', FindExecutable(name="ign"), 'gazebo',  '-r', '-v', gz_verbosity, world_path],
-            output='screen',
-            additional_env=gz_env, # type: ignore
+            cmd=[
+                "ruby",
+                FindExecutable(name="ign"),
+                "gazebo",
+                "-r",
+                "-v",
+                gz_verbosity,
+                world_path,
+            ],
+            output="screen",
+            additional_env=gz_env,  # type: ignore
             shell=False,
-        )
+        ),
     ]
 
     spawn_entity = Node(
@@ -130,8 +154,7 @@ def generate_launch_description():
             "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
             "/fake_latch/latch@std_msgs/msg/String]ignition.msgs.StringMsg",
             "/fake_latch/unlatch@std_msgs/msg/String]ignition.msgs.StringMsg",
-            "/latch_lever/contact@ros_gz_interfaces/msg/Contacts[gz.msgs.Contacts"
-
+            "/latch_lever/contact@ros_gz_interfaces/msg/Contacts[gz.msgs.Contacts",
         ],
         output="screen",
     )
@@ -264,5 +287,6 @@ def generate_launch_description():
             ),
             relay_odom,
             relay_cmd_vel,
-        ] + gazebo
+        ]
+        + gazebo
     )

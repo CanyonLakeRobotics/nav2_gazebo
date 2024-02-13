@@ -22,7 +22,7 @@
   <exec_depend>ros_ign_gazebo</exec_depend>
   <exec_depend>ign_ros2_control</exec_depend>
   <exec_depend>topic_tools</exec_depend>
-  
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <test_depend>launch_testing</test_depend>

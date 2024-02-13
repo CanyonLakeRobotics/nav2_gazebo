@@ -28,9 +28,21 @@ repos:
       - id: destroyed-symlinks
       - id: detect-private-key
       - id: end-of-file-fixer
+        exclude:  |
+              (?x)(
+                  ^models/|
+                  ^description/|
+                  ^world/
+              )
       - id: mixed-line-ending
       - id: pretty-format-json
       - id: trailing-whitespace
+        exclude:  |
+              (?x)(
+                  ^models/|
+                  ^description/|
+                  ^world/
+              )
 
   - repo: https://github.com/psf/black
     rev: 23.10.0

@@ -19,7 +19,7 @@ pip3 install vcstool
 vcs import --input deps.repos src
 
 # Install rosrep dependencies
-rosdep install -y -r -i  --from-paths . 
+rosdep install -y -r -i  --from-paths .
 
 # Make sure ROS2 is sourced (assuming bash, please replace extension as needed)
 source /opt/ros/humble/setup.bash
@@ -79,4 +79,3 @@ pip install -r requirements
 python run-rerun.py
 ```
 ![Screenshot from 2023-03-27 20-42-32](https://user-images.githubusercontent.com/2298371/228792085-66837913-32fe-4506-9624-673424328ea4.png)
-

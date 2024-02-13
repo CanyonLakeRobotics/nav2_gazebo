@@ -50,7 +50,7 @@ ament_target_dependencies(
 
 # Add fake latch plugin lib
 add_library(FakeLatchPlugin SHARED src/fake_latch_plugin.cpp)
-target_link_libraries(FakeLatchPlugin PUBLIC 
+target_link_libraries(FakeLatchPlugin PUBLIC
                       ignition-gazebo${IGN_GAZEBO_VER}::ignition-gazebo${IGN_GAZEBO_VER}
                       ignition-plugin${IGN_PLUGIN_VER}::ignition-plugin${IGN_PLUGIN_VER}
                       ignition-transport${IGN_TRANSPORT_VER}::ignition-transport${IGN_TRANSPORT_VER}

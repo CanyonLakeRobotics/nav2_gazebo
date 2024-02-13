@@ -18,6 +18,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch.events.process import ProcessIO
 from launch.event_handlers import OnProcessIO
 
+
 # Create event handler that waits for an output message and then returns actions
 def on_matching_output(matcher: str, result: launch.SomeActionsType):
     def on_output(event: ProcessIO):
@@ -34,7 +35,7 @@ def on_matching_output(matcher: str, result: launch.SomeActionsType):
 def generate_launch_description():
     # Messages are from: https://navigation.ros.org/setup_guides/sensors/setup_sensors.html#launching-nav2
     diff_drive_loaded_message = (
-        "Sucessfully loaded controller diff_drive_base_controller into state active"
+        "Successfully loaded controller diff_drive_base_controller into state active"
     )
     slam_toolbox_ready_message = "Registering sensor"
     navigation_ready_message = "Creating bond timer"
@@ -42,7 +43,7 @@ def generate_launch_description():
     run_headless = LaunchConfiguration("run_headless")
     start_slam = LaunchConfiguration("start_slam")
 
-    # Including launchfiles with execute process because i didn't find another way to wait for a certain messages befor starting the next launchfile
+    # Including launchfiles with execute process because i didn't find another way to wait for a certain messages before starting the next launchfile
     bringup = ExecuteProcess(
         name="launch_bringup",
         cmd=[
@@ -117,15 +118,18 @@ def generate_launch_description():
                 ]
             ),
             "use_sim_time:=True",
-            ["map:=", PathJoinSubstitution(
-                [
-                    FindPackageShare("site_config"),
-                    "config",
-                    "grocery_map.yaml",
-                ]
-            ) ],
+            [
+                "map:=",
+                PathJoinSubstitution(
+                    [
+                        FindPackageShare("site_config"),
+                        "config",
+                        "grocery_map.yaml",
+                    ]
+                ),
+            ],
             "slam:=False",
-            ["params_file:=", LaunchConfiguration('params_file')]
+            ["params_file:=", LaunchConfiguration("params_file")],
         ],
         shell=False,
         output="screen",
@@ -145,14 +149,17 @@ def generate_launch_description():
                 ]
             ),
             "use_sim_time:=True",
-            ["map:=", PathJoinSubstitution(
-                [
-                    FindPackageShare("site_config"),
-                    "config",
-                    "grocery_map.yaml",
-                ]
-            ) ],
-            ["params_file:=", LaunchConfiguration('params_file')]
+            [
+                "map:=",
+                PathJoinSubstitution(
+                    [
+                        FindPackageShare("site_config"),
+                        "config",
+                        "grocery_map.yaml",
+                    ]
+                ),
+            ],
+            ["params_file:=", LaunchConfiguration("params_file")],
         ],
         shell=False,
         output="screen",
@@ -192,7 +199,10 @@ def generate_launch_description():
         [
             DeclareLaunchArgument(
                 "params_file",
-                default_value=[FindPackageShare("nav2_gazebo"), "/config/nav2_params.yaml"],
+                default_value=[
+                    FindPackageShare("nav2_gazebo"),
+                    "/config/nav2_params.yaml",
+                ],
                 description="Full path to the ROS2 parameters file to use for all launched nodes",
             ),
             DeclareLaunchArgument(

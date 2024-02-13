@@ -14,7 +14,7 @@
     <xacro:property name="castor_housing_mass" value="0.35" /> 
     <xacro:property name="chassis_mass" value="6.5" />
 
-    <!-- Define some commonly used intertial properties  -->
+    <!-- Define some commonly used inertial properties  -->
     <xacro:macro name="box_inertia" params="m w h d">
       <inertial>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>

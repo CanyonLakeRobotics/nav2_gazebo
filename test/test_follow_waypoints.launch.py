@@ -21,7 +21,7 @@ def generate_test_description():
                 os.path.join(
                     get_package_share_directory("nav2_gazebo"),
                     "launch",
-                    "complete_navigation.launch.py"
+                    "complete_navigation.launch.py",
                 ),
             ]
         ),

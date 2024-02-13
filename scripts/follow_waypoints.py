@@ -20,7 +20,8 @@ from rclpy.duration import Duration
 import yaml
 
 
-waypoints = yaml.safe_load('''
+waypoints = yaml.safe_load(
+    """
 waypoints:
   - position:
       x: 0.8006443977355957
@@ -94,7 +95,9 @@ waypoints:
       y: 0.0
       z: 0.7179595085705036
       w: 0.6960848684271199
-''')
+"""
+)
+
 
 def main():
     rclpy.init()
@@ -102,7 +105,7 @@ def main():
 
     def create_pose(transform):
         pose = PoseStamped()
-        pose.header.frame_id = 'map'
+        pose.header.frame_id = "map"
         pose.header.stamp = navigator.get_clock().now().to_msg()
         pose.pose.position.x = transform["position"]["x"]
         pose.pose.position.y = transform["position"]["y"]
@@ -114,7 +117,6 @@ def main():
         return pose
 
     goal_poses = list(map(create_pose, waypoints["waypoints"]))
-
 
     # Wait for navigation to fully activate, since autostarting nav2
     navigator.waitUntilNav2Active(localizer="smoother_server")
@@ -138,8 +140,12 @@ def main():
         feedback = navigator.getFeedback()
 
         if feedback and i % 5 == 0:
-            print('Executing current waypoint: ' +
-                  str(feedback.current_waypoint + 1) + '/' + str(len(goal_poses)))
+            print(
+                "Executing current waypoint: "
+                + str(feedback.current_waypoint + 1)
+                + "/"
+                + str(len(goal_poses))
+            )
             now = navigator.get_clock().now()
 
             # Some navigation timeout to demo cancellation
@@ -149,18 +155,18 @@ def main():
     # Do something depending on the return code
     result = navigator.getResult()
     if result == TaskResult.SUCCEEDED:
-        print('Goal succeeded!')
+        print("Goal succeeded!")
     elif result == TaskResult.CANCELED:
-        print('Goal was canceled!')
+        print("Goal was canceled!")
     elif result == TaskResult.FAILED:
-        print('Goal failed!')
+        print("Goal failed!")
     else:
-        print('Goal has an invalid return status!')
+        print("Goal has an invalid return status!")
 
     # navigator.lifecycleShutdown()
 
     exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
