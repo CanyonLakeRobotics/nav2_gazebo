@@ -20,6 +20,8 @@ find_package(ament_cmake REQUIRED)
 find_package(xacro REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(ros_gz_interfaces REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 
@@ -34,6 +36,16 @@ set(IGN_PLUGIN_VER ${ignition-plugin1_VERSION_MAJOR})
 
 include_directories(
   include
+)
+
+
+# Add cart name extractor
+add_executable(cart_contact_detector src/cart_name_extractor.cpp)
+ament_target_dependencies(
+  cart_contact_detector
+  rclcpp
+  std_msgs
+  ros_gz_interfaces
 )
 
 # Add fake latch plugin lib
@@ -60,6 +72,14 @@ install(PROGRAMS
   scripts/follow_waypoints.py
   DESTINATION lib/${PROJECT_NAME}
 )
+
+install(
+  TARGETS
+    cart_contact_detector
+  RUNTIME DESTINATION lib/nav2_gazebo
+  INCLUDES DESTINATION include/nav2_gazebo
+)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

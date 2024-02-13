@@ -74,7 +74,7 @@ namespace nav2_gazebo
             ignwarn << "Latching " << cart_name << " to " << robot_name_ << std::endl;
             ignition::gazebo::Model cart_model(cart_);
             ecm.CreateComponent(latch_joint_, 
-                                ignition::gazebo::components::DetachableJoint({robot_, cart_model.LinkByName(ecm, "chassis"),"fixed"})
+                                ignition::gazebo::components::DetachableJoint({robot_, cart_model.LinkByName(ecm, "base_link"),"fixed"})
             );
             latched_ = true;
         }   
