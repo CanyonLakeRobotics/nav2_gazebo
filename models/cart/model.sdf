@@ -45,69 +45,18 @@
         </surface>
       </collision>
       <visual name='base_link_visual'>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0.03 -0.55 -0.15 0 0 1.517</pose>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/cart_base.dae</uri>
-            <submesh>
-              <name>base_metal</name>
-              <center>false</center>
-            </submesh>
-          </mesh>
-        </geometry>
-      </visual>
-      <visual name='base_shelf_visual'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/cart_base.dae</uri>
-            <submesh>
-              <name>base_shelf</name>
-              <center>false</center>
-            </submesh>
-          </mesh>
-        </geometry>
-      </visual>
-      <visual name="back_left_sup_visual">
-        <pose>-0.245 -1.005 0.05 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/sup_wheels.dae</uri>
-          </mesh>
-        </geometry>
-      </visual>
-      <visual name="back_right_sup_visual">
-        <pose>0.245 -1.005 0.05 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/sup_wheels.dae</uri>
-          </mesh>
-        </geometry>
-      </visual>
-      <visual name='tag_visual'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/cart_base.dae</uri>
-            <submesh>
-              <name>tag</name>
-              <center>false</center>
-            </submesh>
+            <scale>1.4 1 1</scale>
+            <uri>meshes/cart_body_visual.stl</uri>
           </mesh>
         </geometry>
         <material>
-          <diffuse>1.0 1.0 1.0</diffuse>
-          <specular>1.0 1.0 1.0</specular>
-          <pbr>
-            <metal>
-              <albedo_map>meshes/cart_tag.png</albedo_map>
-            </metal>
-          </pbr>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>0.5 0.5 0.5 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
         </material>
       </visual>
     </link>
