@@ -18,11 +18,11 @@
         </inertia>
       </inertial>
       <collision name='base_link_collision'>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0.03 -0.55 -0.15 0 0 1.517</pose>
         <geometry>
           <mesh>
-            <scale>1 1 1</scale>
-            <uri>meshes/cart_base_collision.stl</uri>
+            <scale>1.4 1 1</scale>
+            <uri>meshes/cart_body_collision.stl</uri>
           </mesh>
         </geometry>
         <max_contacts>5</max_contacts>
