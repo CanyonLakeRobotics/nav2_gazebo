@@ -12,7 +12,7 @@
     <xacro:property name="wheel_mass" value="1.25" /> 
     <xacro:property name="castor_mass" value="0.2" /> 
     <xacro:property name="castor_housing_mass" value="0.35" /> 
-    <xacro:property name="chassis_mass" value="6.5" />
+    <xacro:property name="chassis_mass" value="8.5" />
 
     <!-- Define some commonly used intertial properties  -->
     <xacro:macro name="box_inertia" params="m w h d">
@@ -322,11 +322,11 @@
   </gazebo>
 
   <link name="latch_lever">
-    <visual>
+    <!-- <visual>
       <geometry>
         <cylinder length="0.6" radius="0.02"/>
       </geometry>
-    </visual>
+    </visual> -->
     <collision name="latch_lever_collision">
       <geometry>
         <cylinder length="0.6" radius="0.02"/>

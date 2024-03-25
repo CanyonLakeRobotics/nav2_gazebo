@@ -201,14 +201,14 @@
 
 
     <model name="cart_0">
-      <pose> -12.5000 9.4671 0.15 0 0 0 </pose>
+      <pose> -12.50 9.52 0.15 0 0 0 </pose>
       <include merge="true">
         <uri>model://cart</uri>
       </include>
     </model>
 
     <model name="cart_1">
-      <pose> -11.2 9.4671 0.15 0 0 0 </pose>
+      <pose> -11.2 9.52 0.15 0 0 0 </pose>
       <include merge="true">
         <uri>model://cart</uri>
       </include>
