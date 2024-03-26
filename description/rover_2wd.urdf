@@ -329,7 +329,7 @@
     </visual> -->
     <collision name="latch_lever_collision">
       <geometry>
-        <cylinder length="0.6" radius="0.02"/>
+        <cylinder length="0.4" radius="0.02"/>
       </geometry>
     </collision>
   </link>
@@ -337,8 +337,48 @@
   <joint name="base_to_latch_lever" type="fixed">
     <parent link="chassis_link"/>
     <child link="latch_lever"/>
-    <origin xyz="-0.5 0 0.5" rpy="1.57123 0 0"/>
+    <origin xyz="-0.5 0 0.5" rpy=" 0 1.57123 0"/>
   </joint>
+
+
+  <!-- Visual latch lever -->
+  <link name="latch_lever_visual_left">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </visual>
+    <!-- <collision name="latch_lever_collision">
+      <geometry>
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </collision> -->
+  </link>
+  <joint name="base_to_latch_visual_left" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="latch_lever_visual_left"/>
+    <origin xyz="-0.5 -0.16 0.18" rpy="0 1.57123 0"/>
+  </joint>
+
+
+  <link name="latch_lever_visual_right">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </visual>
+    <!-- <collision name="latch_lever_collision">
+      <geometry>
+        <cylinder length="0.6" radius="0.02"/>
+      </geometry>
+    </collision> -->
+  </link>
+  <joint name="base_to_latch_visual_right" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="latch_lever_visual_right"/>
+    <origin xyz="-0.5 0.16 0.18" rpy="0 1.57123 0"/>
+  </joint>
+
 
   <!-- Lidar -->
   <link name="lidar_link">
