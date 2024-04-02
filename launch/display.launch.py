@@ -13,6 +13,7 @@ from launch.substitutions import (
     LaunchConfiguration,
     NotSubstitution,
     AndSubstitution,
+    PathJoinSubstitution
 )
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
@@ -136,6 +137,17 @@ def generate_launch_description():
         output="screen",
     )
 
+
+    laser_box_filter = Node(
+            package="laser_filters",
+            executable="scan_to_scan_filter_chain",
+            parameters=[
+                PathJoinSubstitution([
+                    launch_ros.substitutions.FindPackageShare(package="site_config").find("site_config"),
+                    "config", "box_filter.yaml",
+                ])],
+        )
+    
     load_joint_state_controller = ExecuteProcess(
         name="activate_joint_state_broadcaster",
         cmd=[
@@ -187,6 +199,13 @@ def generate_launch_description():
                 "output_topic": "/diff_drive_base_controller/cmd_vel_unstamped",
             }
         ],
+        output="screen",
+    )
+
+    contact_detector = Node(
+        name="cart_contact_detector",
+        package="nav2_gazebo",
+        executable="cart_contact_detector",
         output="screen",
     )
 
@@ -264,5 +283,7 @@ def generate_launch_description():
             ),
             relay_odom,
             relay_cmd_vel,
-        ] + gazebo
+            # contact_detector,
+            laser_box_filter,
+        ] + gazebo 
     )
